@@ -1,0 +1,79 @@
+{
+   "author": "Saber Maram",
+   "background": {
+      "page": "background.html"
+   },
+   "browser_action": {
+      "default_icon": {
+         "128": "assets/images/get_started128.png",
+         "16": "assets/images/get_started16.png",
+         "32": "assets/images/get_started32.png",
+         "48": "assets/images/get_started48.png"
+      },
+      "default_popup": "index.html",
+      "default_title": "BitTube AirTime Extension"
+   },
+   "commands": {
+      "launch-element-picker": {
+         "description": "__MSG_popupTipPicker__"
+      },
+      "launch-element-zapper": {
+         "description": "__MSG_popupTipZapper__"
+      },
+      "launch-logger": {
+         "description": "__MSG_popupTipLog__"
+      }
+   },
+   "content_scripts": [ {
+      "all_frames": true,
+      "js": [ "plugins/clientcomms.js" ],
+      "matches": [ "*://bittubeapp.com/tubepay/client.html", "*://bittube-airtime-extension.firebaseapp.com/tubepay/client.html", "*://bittube-airtime-extension-dev.firebaseapp.com/tubepay/client.html", "*://bittubeapp.com/wallet/*", "*://bittube-airtime-extension.firebaseapp.com/wallet/*", "*://bittube-airtime-extension-dev.firebaseapp.com/wallet/*" ],
+      "run_at": "document_start"
+   }, {
+      "js": [ "external/parse-domain.js", "plugins/NewWebinfo/contentID.js", "plugins/blackbox/js/loader.js", "plugins/blackbox/js/events.js" ],
+      "matches": [ "\u003Call_urls>" ],
+      "run_at": "document_start"
+   }, {
+      "js": [ "plugins/NewWebinfo/inPageDonation.js", "assets/js/walletHelpers.js", "external/i18/i18next.min.js", "external/i18/loc-i18next.min.js", "external/i18/i18nextBrowserLanguageDetector.min.js", "external/i18/i18nextXHRBackend.min.js", "external/i18/i18-translate.js" ],
+      "matches": [ "\u003Call_urls>" ]
+   }, {
+      "all_frames": true,
+      "js": [ "plugins/uBlock/js/vapi.js", "plugins/uBlock/js/vapi-client.js", "plugins/uBlock/js/contentscript.js" ],
+      "matches": [ "http://*/*", "https://*/*" ],
+      "run_at": "document_start"
+   }, {
+      "all_frames": false,
+      "js": [ "plugins/uBlock/js/scriptlets/subscriber.js" ],
+      "matches": [ "http://*/*", "https://*/*", "*://bittube-airtime-extension.firebaseapp.com/*", "*://bittube-airtime-extension-dev.firebaseapp.com/*" ],
+      "run_at": "document_idle"
+   } ],
+   "content_security_policy": "script-src 'self'  https://apis.google.com 'unsafe-eval'; object-src 'self'",
+   "default_locale": "en",
+   "description": "Monetize your time while you are browsing the web.",
+   "externally_connectable": {
+      "accepts_tls_channel_id": false,
+      "ids": [ "*" ],
+      "matches": [ "*://airshare.bittubeapp.com/*", "*://bittubeapp.com/*", "*://bittube-airtime-extension.firebaseapp.com/*", "*://bittube-airtime-extension-dev.firebaseapp.com/*", "*://bittubers.com/*", "*://testing.bittubers.com/*" ]
+   },
+   "icons": {
+      "128": "assets/images/get_started128.png",
+      "16": "assets/images/get_started16.png",
+      "32": "assets/images/get_started32.png",
+      "48": "assets/images/get_started48.png"
+   },
+   "incognito": "split",
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlSDQl34QwXh2kd8AJe7Qey2BgXFHDezRMiVF+tb6zKA/3pO2VKxbLSvSqhJVLbXCiksVpFRpEahpnwGhgmzZcff5RHNtxA5DUvBhOUA7/Ua40Sze9VMG6yNHYHjnDwb4UAW+sgxpE/Yr8BjeL6cCoR2gE69K1NKtPaKdbT6rCLD3E2wI1P8dnPrhBsM5enZBFNLU9WNlIwbBJHirC1TEzLsAgI/RjjVY7aozd/juyFGARQ+Z5AHadfQ2FFYTkNZqxcPwBmn04sHv8ifsMXKzneQ0AkgdyLi4pAO+klznFaqT132qV0CCH5X/fJfcCtlZZUxpTuhWq5pV+gbVKSyzqQIDAQAB",
+   "manifest_version": 2,
+   "name": "BitTube AirTime, Donations, Adblocker, Wallet",
+   "oauth2": {
+      "client_id": "632275942486-da48fumn63sfhjej13c3rh572f8rc5ii.apps.googleusercontent.com",
+      "scopes": [ "https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.profile" ]
+   },
+   "permissions": [ "cookies", "activeTab", "declarativeContent", "identity", "storage", "contextMenus", "privacy", "storage", "tabs", "unlimitedStorage", "webNavigation", "webRequest", "webRequestBlocking", "notifications", "proxy", "\u003Call_urls>" ],
+   "storage": {
+      "managed_schema": "plugins/uBlock/managed_storage.json"
+   },
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "2.0.0.8",
+   "web_accessible_resources": [ "web_accessible_resources/*", "_locales/*" ]
+}

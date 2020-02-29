@@ -1,0 +1,26 @@
+{
+	"name": "thebot",
+	"version": "1.0.0",
+	"description": "",
+	"main": "thebot.js",
+	"scripts": {
+		"start": "thebot.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "noOne",
+	"license": "MIT",
+	"dependencies": {
+		"array-unique": "^0.3.2",
+		"delay": "^4.3.0",
+		"internet-available": "^1.0.0",
+		"node-cron": "^2.0.3",
+		"pm2": "latest",
+		"public-ip": "^3.2.0",
+		"puppeteer": "latest",
+		"random": "^2.1.1",
+		"readline": "^1.3.0",
+		"sleep": "^6.1.0",
+		"tor-request": "^3.1.0",
+		"twitter": "^1.7.1"
+	}
+}

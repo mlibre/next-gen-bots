@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="assets/css/grid.css"
+    ></link>
+
+    <!-- Custom styles for Top menu Only -->
+
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="assets/css/theme.css"
+    ></link>
+
+    <link
+        rel="stylesheet"
+        href="/external/fontawesome/css/font-awesome.min.css"
+    ></link>
+
+    <script src="assets/js/http-requests.js"></script>
+
+    <!-- Load Firebase SDK  -->
+    <script src="/external/firebase/firebase-app.js"></script>
+    <script src="/external/firebase/firebase-auth.js"></script>
+    <script src="/external/firebase/firebase-config.js"></script>
+    <script src="/external/firebase/firebase-database.js"></script>
+    <script src="/external/firebase/firebase-providers.js"></script>
+    
+    <script src="external/aes.js"></script>
+    <script src="/external/moment/moment-with-locales.min.js"></script>
+    <script src="wallet/js/crc32.js?1"></script>
+    <script src="wallet/js/mnemonic.js?2"></script>
+    <script src="/external/qrcode.min.js?1"></script>
+    <script src="/external/biginteger.js?1"></script>
+    <script src="/assets/js/biginteger-lowval.js?1"></script>
+    <script src="wallet/js/config.js?4"></script>
+    <script src="wallet/js/crypto.js?1"></script>
+    <script src="/external/sha3.min.js?1"></script>
+    <script src="/external/nacl-fast.min.js?1"></script>
+    <script src="wallet/js/base58.js?1"></script>
+    <script src="wallet/js/cn_util.js?2"></script>
+    <!-- Load Mobiscroll  -->
+    <script src="/external/mobiscroll/mobiscroll.javascript.min.js"></script>
+    <link href="/external/mobiscroll/mobiscroll.javascript.min.css" rel="stylesheet" type="text/css">
+    <!-- <link href="assets/css/bittube-fonts.css" rel="stylesheet" type="text/css"> -->
+    <link href="assets/css/coin-font.css" rel="stylesheet" type="text/css">
+
+    <!-- morris for chart -->
+    <script src="external/Chart.bundle.min.js"></script>
+
+    <!-- load main.js, nav.js and header.js-->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/nav.js"></script>
+    <script src="assets/js/header.js"></script>
+</head>
+
+
+<body>
+        <div class="container maxWidth360">
+                <div class="row">
+                        <div class="medium-4">
+                                <div id="mainContentAirtime" class="panel panel-green effect5">
+                                        <div class="panel-heading width360" align="center">
+                                                <div class="divOptions">
+
+                                                        <button id="buttonMenu" class="button-toggle" type="button" data-menu="open">
+                                                                <span class="sr-only"></span>
+                                                                <span class="icon-bar"></span>
+                                                                <span class="icon-bar"></span>
+                                                                <span class="icon-bar"></span>
+                                                        </button>
+
+                                           <!--              <button id="buttonMenu" class="hamburger">&#9776;</button>
+                                                        <button id="buttonCloseMenu" class="closebtn"> <span class="mbsc-ic mbsc-ic-material-close"></span></button> -->
+                                                </div>
+                                                <div id="powerButton" class="divLogoFlip cursorPointer">
+                                                        <div id="buttonFlip" class="ch-item ch-img-1">
+                                                                <div class="ch-info-wrap">
+                                                                        <div class="ch-info">
+                                                                                <div class="ch-info-front ch-img-1">
+                                                                                        <img src="assets/images/logo-header.svg" class="logoHeader" id="logoheader">
+                                                                                </div>
+                                                                                <div class="ch-info-back">
+                                                                                        <button id="buttonStandBy" class="active">
+                                                                                        <i class="fa fa-power-off"></i>
+                                                                                        </button>
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+
+                                                </div>
+                                                <div id="divBuyTubes">
+                                                        <!-- <button id="logoutButton">
+                                                                <a class="mbsc-ic mbsc-ic-ion-log-out"></a>
+                                                        </button> -->
+                                                        <button id="buttonBuyTubes" class="translate">
+                                                                        <span class="font9" data-i18n="[html]html.buy"></span>
+                                                                </button>
+                                                </div>
+                                         </div>
+
+
+                                        <div class="panel-body">
+                                                <div align="center">
+                                                        <!-- START DIV DIVISION -->
+                                                        <div class="division width360 translate">
+                                                                <span data-i18n="helpFor"></span> <span id="username"></span>
+                                                        </div>
+                                                </div>
+                                                <div id="airtimeMessagesContainer"></div>
+                                                <div id="userSuggestions">
+                                                                <div id="shareReferral" class="translate">
+                                                                        <span data-i18n="shareYourReferral"></span>
+                                                                        <i class="mbsc-ic mbsc-ic-fa-close closeSuggestions" data-suggestion="referral"></i>
+                                                                 </div>
+                                                                <div id="suggestionSecurity" class="displayNone translate">
+                                                                        <span data-i18n="forHighestLevel"></span>
+                                                                        <i class="mbsc-ic mbsc-ic-fa-close closeSuggestions" data-suggestion="2FA"></i>
+                                                                </div>
+                                                        </div>
+                                                <div class="positionRelative width360 minHeight200"></div>
+
+                                                 <!-- START DIV FOOTER -->
+                                                <div class="divFooter" align="center">
+                                                        <a id="footerLink"> BitTube </a>
+                                                </div>
+                                                <!-- END DIV FOOTER -->
+                                        </div>
+                                </div>
+                        </div>
+
+
+                        <!-- POPUP CONFIRM EMAIL -->
+                        <div id="confirmEmail" style="display: none;">
+                                <div class="md-dialog popUpResendEmail translate">
+                                        <h3 class="md-text-center" data-i18n="confirmEmail"></h3>
+                                        <p class="md-text-center"><span data-i18n="[prepend]sentYouEmail"> &nbsp;</span><span id="userEmail"></span>. <span data-i18n="followInstructions"></span></p>
+                                </div>
+                        </div>
+                        <!-- END POPUP CONFIRM EMAIL -->
+
+
+
+                </div>
+
+        </div>
+
+
+        <!-- LOAD uBLOCK JS SCRIPTS-->
+        <script src="plugins/uBlock/lib/punycode.js"></script>
+        <script src="plugins/uBlock/js/vapi.js"></script>
+        <script src="plugins/uBlock/js/vapi-common.js"></script>
+        <script src="plugins/uBlock/js/vapi-client.js"></script>
+        <script src="plugins/uBlock/js/udom.js"></script>
+        <script src="plugins/uBlock/js/i18n.js"></script>
+        <!-- Load i18  -->
+        <script src="/external/i18/i18next.min.js" ></script>
+        <script src="/external/i18/loc-i18next.min.js" ></script>
+        <script src="/external/i18/i18nextBrowserLanguageDetector.min.js" ></script>
+        <script src="/external/i18/i18nextXHRBackend.min.js" ></script>
+        <script src="/external/i18/i18-translate.js" ></script>
+</body>
+</html>

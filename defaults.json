@@ -1,0 +1,16 @@
+{
+	"viewport": {"width": 1366, "height": 625 },
+	"userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3312.0 Safari/537.36",
+	"headlessS": false,
+	"useTor": false,
+	"useAdBlocker": false,
+	"port": 5000,
+	"useExpress": false,
+	"useCronForLike": false,
+	"cronEveryMin": 1,
+	"botRunChance": 2,
+	"runOnStart": true,
+	"logToFile": false,
+	"maxConCurrentTip": 2,
+	"torRange": [50,62]
+}

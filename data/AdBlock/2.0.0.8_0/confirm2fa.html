@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="assets/css/grid.css"
+    ></link>
+
+    <!-- Custom styles for Top menu Only -->
+
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="assets/css/theme.css"
+    ></link>
+
+    <link
+        rel="stylesheet"
+        href="/external/fontawesome/css/font-awesome.min.css"
+    ></link>
+
+    <script src="assets/js/http-requests.js"></script>
+
+    <!-- Load Firebase SDK  -->
+    <script src="/external/firebase/firebase-app.js"></script>
+    <script src="/external/firebase/firebase-auth.js"></script>
+    <script src="/external/firebase/firebase-config.js"></script>
+    <script src="/external/firebase/firebase-database.js"></script>
+    <script src="/external/firebase/firebase-providers.js"></script>
+
+    <script src="external/aes.js"></script>
+
+    <!-- Load Mobiscroll  -->
+    <script src="/external/mobiscroll/mobiscroll.javascript.min.js"></script>
+    <link href="/external/mobiscroll/mobiscroll.javascript.min.css" rel="stylesheet" type="text/css">
+    <!-- <link href="assets/css/bittube-fonts.css" rel="stylesheet" type="text/css"> -->
+
+    <!-- load main.js, nav.js and header.js-->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/nav.js"></script>
+    <script src="assets/js/header.js"></script>
+
+</head>
+
+<body>
+    <div class="container width360">
+        <div class="row">
+            <div class="medium-4">
+                    <div id="mainContentAirtime" class="panel panel-green effect5">
+                    <div class="panel-heading width360 headerContent" align="center">
+                         <div class="divOptions">
+
+                                    <button id="buttonMenu" class="button-toggle" type="button" data-menu="open">
+                                            <span class="sr-only"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                    </button>
+
+                        <!--              <button id="buttonMenu" class="hamburger">&#9776;</button>
+                                    <button id="buttonCloseMenu" class="closebtn"> <span class="mbsc-ic mbsc-ic-material-close"></span></button> -->
+                            </div>
+
+                        <div id="powerButton" class="divLogoFlip cursorPointer">
+                            <div id="buttonFlip" class="ch-item ch-img-1">
+                                <div class="ch-info-wrap">
+                                    <div class="ch-info">
+                                        <div class="ch-info-front ch-img-1">
+                                            <img src="assets/images/logo-header.svg" class="logoHeader" id="logoheader">
+                                        </div>
+                                        <div class="ch-info-back">
+                                            <button id="buttonStandBy" class="active">
+                                            <i class="fa fa-power-off"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="panel-body width360">
+                        <div align="center">
+                            <!-- START DIV DIVISION -->
+                            <div class="division translate">
+                                <span data-i18n="[append]deletePhone" ></span>
+                            </div>
+                            <!-- END DIV DIVISION -->
+
+                            <!-- START DIV LOGIN -->
+                            <form id="loginForm" class="md-login-form" mbsc-enhance mbsc-form>
+                                    <div class="mbsc-form-group no-margin width80">
+                                        <p class="noMarginTop">
+                                          To delete your phone number<br> please type the 6 digits code.
+                                        </p>
+                                        <label for="name" class="labelFormDonate translate">
+                                            <span class="mbsc-label" data-i18n="2FACode"></span>
+                                            <input id="verifySecret" name="verifiySecret" type="text"  maxlength="6" data-input-style="outline" required="required" class="mainInput"/>
+                                           
+                                        </label>
+                                    </div>
+                                   
+                                    <div class="mbsc-form-group-inset mbsc-padding translate">
+                                        <button id="confirm2fa" type="submit" class="width77">
+                                            <div class="loadingButton displayNone">
+                                                <i class="mbsc-ic mbsc-ic-fa-spinner"></i>
+                                            </div>
+                                            <span class="textButton" data-i18n="confirm"></span>
+                                        </button>
+                                    </div>
+                            </form>
+
+                          
+                            <!-- END DIV LOGIN -->
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOAD uBLOCK JS SCRIPTS-->
+    <script src="plugins/uBlock/lib/punycode.js"></script>
+    <script src="plugins/uBlock/js/vapi.js"></script>
+    <script src="plugins/uBlock/js/vapi-common.js"></script>
+    <script src="plugins/uBlock/js/vapi-client.js"></script>
+    <script src="plugins/uBlock/js/udom.js"></script>
+    <script src="plugins/uBlock/js/i18n.js"></script>
+
+ <script src="/external/i18/i18next.min.js" ></script>
+    <script src="/external/i18/loc-i18next.min.js" ></script>
+    <script src="/external/i18/i18nextBrowserLanguageDetector.min.js" ></script>
+    <script src="/external/i18/i18nextXHRBackend.min.js" ></script>
+    <script src="/external/i18/i18-translate.js" ></script>
+</body>
+</html>
