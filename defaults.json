@@ -11,6 +11,6 @@
 	"botRunChance": 2,
 	"runOnStart": true,
 	"logToFile": false,
-	"maxConCurrentTip": 2,
+	"maxConCurrentUser": 2,
 	"torRange": [50,62]
 }

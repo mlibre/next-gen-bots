@@ -1,14 +1,17 @@
 :blush: :robot: Next Generation Bot :robot: :blush:
 ---
-Most **advanced Bot-Army** or web bot for **anything!**. It is the structure of a un detectable working bot. so you will change it for urs.
-Also there are sample code in commom.js.
+Most **advanced Bot-Army** or web bot. It is the structure of an undetectable bot.  
+Multi-instance can be run simultaneously using `pm2`.  
+There are sample and useful code and `functions` in `commom.js`.
+
+# Features:
 * Undetectable
-* Realiable
+* Reliable
 * Fast & Secure
 * Autorun
 * Scheduling
 * Can use tor out-of-box
-* And More
+* Enabled Adblock extension
 
 # Requirements
 * NodeJs
@@ -67,7 +70,3 @@ Donate
 Donate or .... :heartpulse:
 ETH:
 > 0xc9b64496986E7b6D4A68fDF69eF132A35e91838e
-
-## Auto mount EXT4
-Fstab:
-UUID=9d0190e1-94a3-4f47-9e75-724fee018a00 /run/media/mlibre/H   ext4    defaults        0       0

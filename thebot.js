@@ -2,74 +2,22 @@ let pm2 = require('pm2');
 let common = require('./common');
 const random = require('random');
 let cron = require('node-cron');
-let tr = require('tor-request');
+let tor = require('tor-request');
 let defaults = require('./defaults.json');
+const commandLineArgs = require("command-line-args");
 
-let users = common.getUsersListSync();
+const optionDefinitions = [
+	{name: "cron", alias: "c", type: Number, defaultOption: true},
+];
+const options = commandLineArgs(optionDefinitions);
 
-if(process.argv[2] != undefined)
+if(options.cronEveryMin)
 {
-	defaults.cronEveryMin = process.argv[2];
+	defaults.cronEveryMin = options.cronEveryMin;
 }
 
-console.log('I need to rest for 10 second :)');
-sleep.sleep(10);
 
-async function run(tipCounts)
-{
-	let username;
-	if(tipCounts < defaults.maxConCurrentTip)
-	{
-		if(users.length == 0)
-		{
-			console.log("I just did it for everyone :) literally everyone");
-			users = common.getUsersListSync();
-			return -3;
-		}
-		else
-		{
-			username = users[random.int(0,users.length-1)];
-			users.splice(users.indexOf(username), 1);
-			runPm2ForTips(username);
-		}
-	}
-}
-
-async function runPm2ForTips(username)
-{
-	pm2.connect(function(err)
-	{
-		if (err)
-		{
-			console.error(err);
-			process.exit(2);
-		}
-		console.log("Starting Tip for" , username);
-		pm2.start(
-		{
-			name: `tip for ${username}`,
-			script: 'publish0x.js',
-			args: [username],
-			output: `./users/${username}/likeout.log`,
-			error: `./users/${username}/likeout.log`,
-			max_memory_restart: '300M',
-			force: false,
-			autorestart: false,
-			// autorestart: true,
-			// maxRestarts: 3,
-			// minUptime: 10000,
-			// restartDelay: 10000
-		},
-		function(err, apps)
-		{			
-			pm2.disconnect();   // Disconnects from PM2
-			if (err) throw err
-		});
-		// console.log(users);
-	});
-}
-
-tr.request('https://api.ipify.org', async function (err, res, body)
+tor.request('https://api.ipify.org', async function (err, res, body)
 {
 	if (!err && res.statusCode == 200 && defaults.useTor == true)
 	{
@@ -97,6 +45,64 @@ tr.request('https://api.ipify.org', async function (err, res, body)
 	}
 });
 
+async function run(userCounts)
+{
+	let username;
+	if(userCounts < defaults.maxConCurrentUser)
+	{
+		if(users.length == 0)
+		{
+			console.log("No user left. reading the list again");
+			users = common.getUsersListSync();
+			return -3;
+		}
+		else
+		{
+			username = users[random.int(0,users.length-1)];
+			users.splice(users.indexOf(username), 1);
+			runPm2(username);
+		}
+	}
+	else
+	{
+		console.log("Max parallel users reached");
+	}
+}
+
+async function runPm2(username)
+{
+	pm2.connect(function(err)
+	{
+		if (err)
+		{
+			console.error(err);
+			process.exit(2);
+		}
+		console.log("Starting for" , username);
+		pm2.start(
+		{
+			name: `user ${username}`,
+			script: 'bot.js',
+			args: [username],
+			output: `./users/${username}/out.log`,
+			error: `./users/${username}/eout.log`,
+			max_memory_restart: '300M',
+			force: false,
+			autorestart: false,
+			// autorestart: true,
+			// maxRestarts: 3,
+			// minUptime: 10000,
+			// restartDelay: 10000
+		},
+		function(err, apps)
+		{			
+			pm2.disconnect();   // Disconnects from PM2
+			if (err) throw err
+		});
+		// console.log(users);
+	});
+}
+
 cron.schedule(`*/${defaults.cronEveryMin} * * * *`, async function pc()
 {
 	if( typeof pc.counter == 'undefined' )
@@ -108,22 +114,22 @@ cron.schedule(`*/${defaults.cronEveryMin} * * * *`, async function pc()
 	console.log('Process Checking number:', pc.counter);
 	if(random.int(1, defaults.botRunChance) == 1)
 	{
-		console.log('Timer Dived ...' , pc.dived++);
+		console.log('Timer dived ...' , pc.dived++);
 		pm2.list(function (err, apps)
 		{
-			let tipR = 0;
+			let usersRunning = 0;
 			for (let index = 0; index < apps.length; index++)
 			{
 				const element = apps[index];
-				if(element.name.includes("tip"))
+				if(element.name.includes("user"))
 				{
 					if(element.pm2_env.status == "online")
 					{
-						tipR++;
+						usersRunning++;
 					}
 				}
 			}
-			run(tipR);
+			run(usersRunning);
 		});
 	}
 });
