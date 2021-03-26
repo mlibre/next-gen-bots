@@ -52,7 +52,7 @@ pm2 save
 "torRange": [50,50] // tor ports. if you have SocksPort 9050 -> SocksPort 9054 then set this option to [50,54]
 ```
 
-# Single User/Time run
+## Single User/Time run
 ```bash
 node bot.js
 ```
