@@ -65,8 +65,7 @@ cp -r /home/mlibre/.config/chromium/Profile\ 1/Extensions/cnogbbmciffpibmkphohpe
 ## Adblock
 Adblock does not work on headless mode (true) now.
 
-Donate
-=======
 Donate or .... :heartpulse:
+=======
 ETH:
 > 0xc9b64496986E7b6D4A68fDF69eF132A35e91838e
